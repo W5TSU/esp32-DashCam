@@ -1,7 +1,7 @@
-# ESP32-CAM example revisited. &nbsp;&nbsp;&nbsp; <span title="Master branch build status">[![CI Status](https://travis-ci.com/w5tsu/esp32-cam-webserver.svg?branch=master)](https://travis-ci.com/github/easytarget/esp32-cam-webserver)</span> &nbsp;&nbsp; <span title="ESP EYE">![ESP-EYE logo](Docs/logo.svg)</span>
+# ESP32-CAM example revisited. &nbsp;&nbsp;&nbsp; <span title="Master branch build status">[![CI Status](https://travis-ci.com/w5tsu/esp32-cam-webserver.svg?branch=master)](https://travis-ci.com/github/w5tsu/esp32-cam-webserver)</span> &nbsp;&nbsp; <span title="ESP EYE">![ESP-EYE logo](Docs/logo.svg)</span>
 
 ## Taken from the ESP examples, and expanded
-This sketch is a extension/expansion/rework of the 'official' ESP32 Camera example sketch from Espressif:
+This sketch is a extension of easytarget wich is an extension/expansion/rework of the 'official' ESP32 Camera example sketch from Espressif:
 
 https://github.com/espressif/arduino-esp32/tree/master/libraries/ESP32/examples/Camera/CameraWebServer
 
@@ -12,23 +12,26 @@ But expanded with:
 * Dedicated standalone stream viewer
 * Over The Air firmware updates
 * Lots of minor fixes and tweaks, documentation etc.
+* To reduce memory needs Face Recognition was removed.
 
-And 'reduced' by removing the Face Recognition features
-* **If you want to try the Face Recognition features** please use the [`3.x` maintenance branch](https://github.com/easytarget/esp32-cam-webserver/tree/3.x), which still recieves bugfixes, but is not receiving any further development.
-* They were a demo, only worked in low resolution modes, did not preserve the face database between power cycles, and were of little use in real-world applications.
-* There are other (specialised) sketches for the ESP-CAM that do use face recognitioni more effectively, if this is your thing :-)
-
-The original example is a bit incomprehensible and hard to modify as supplied. It is very focused on showing off the face recognition capabilities, and forgets the 'webcam' part.
-* There are many other variants of a webcam server for these modules online, but most are created for a specific scenario and not good for general, casual, webcam use.
+### GOAL
+The goal of this project is to create a DashCam that:
+* Uploads, to a home server / date folder, when it can reach the home WiFi. Verifies the upload and removes the files from the SD-card.
+* Starts recording, to the SD-card, when the ignition is turned on. Stops when it is turned off.
+* Goes into AP mode when not connected to home network and not recording.
+* Create a Android Phone app to connect to AP and play recordered images.
+* Provide for On Screen Display (OSD) of Date and Time
 
 ![Actually, there are two cats in this image!]( Docs/twocatsactually.png)
 
-Hopefully this expanded example is more useful for those users who wish to set up a simple ESP32 based webcam using the cheap(ish) modules freely available online. Especially the AI-THINKER board:
+### Hardware used:
 
-#### AI-THINKER ESP32-CAM vs Other Modules:
+[ESP32-Cam](https://www.amazon.com/ESP32-CAM-MB-Aideepen-ESP32-CAM-Bluetooth-Arduino/dp/B0BC1371J4/)These are about $8 US on Amazon.com.
+You can purchase different ["Cameras"](https://www.amazon.com/gp/product/B0B63JQHQG/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1) for this board. 
 
-I have four [AI-THINKER ESP32-CAM](https://github.com/raphaelbs/esp32-cam-ai-thinker/blob/master/assets/ESP32-CAM_Product_Specification.pdf) boards, so the descriptions below are for that board. But I took care to leave the default definitions and controls for other boards in the example intact. You may need to adjust the programming method to suit the your board, look for examples online.
+#### AI-THINKER ESP32-CAM and ther examples:
 
+* [AI-THINKER ESP32-CAM](https://github.com/raphaelbs/esp32-cam-ai-thinker/blob/master/assets/ESP32-CAM_Product_Specification.pdf) is a good example of what can be done. 
 * For some other good examples and information on ESP32 based webcams I also recommend the sketches here:
 https://github.com/raphaelbs/esp32-cam-ai-thinker
 * The AI thinker wiki can be quite informative, when run through an online translator and read sensibly:
@@ -67,7 +70,7 @@ Note that I do not respond to any Private Messages (via github, hackaday, or whe
 * The AI-THINKER board requires use of an external **3.3v** serial adapter to program; I use a `FTDI Friend` adapter, for more about this read AdaFruits excellent [FTDI Friend guide](https://learn.adafruit.com/ftdi-friend).
 * Be careful not to use a 5v serial adapter since this will damage the ESP32.
 
-### Wiring for AI-THINKER Boards (and similar clone-alikes)
+### Wiring for Boards without USB. (and similar clone-alikes)
 
 Is pretty simple, You just need jumper wires, no soldering really required, see the diagram below.
 ![Hoockup](Docs/hookup.png)
@@ -143,15 +146,3 @@ The communications between the web browser and the camera module can also be use
 
 Contributions are welcome; please see the [Contribution guidelines](CONTRIBUTING.md).
 
-## Plans
-
-Time allowing; my Current plan is:
-
-V4
-* Investigate using SD card to capture images
-* Implement a better network stack for remembering multiple AP's, auto-config etc.
-  * Advanced (web upload) OTA might be nice to have if possible
-* UI Skinning/Theming
-* OSD
-  * Temperature/humidity/pressure sensor support (bme20,dht11)
-You can check the [enhancement list](https://github.com/easytarget/esp32-cam-webserver/issues?q=is%3Aissue+label%3Aenhancement) (past and present), and add any thoughts you may have there.
