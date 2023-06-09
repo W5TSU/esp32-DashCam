@@ -1,4 +1,4 @@
-# ESP32-CAM example revisited. &nbsp;&nbsp;&nbsp; <span title="Master branch build status">[![CI Status](https://travis-ci.com/w5tsu/esp32-cam-webserver.svg?branch=master)](https://travis-ci.com/github/w5tsu/esp32-cam-webserver)</span> &nbsp;&nbsp; <span title="ESP EYE">![ESP-EYE logo](Docs/logo.svg)</span>
+# ESP32-CAM DashCam. &nbsp;&nbsp;&nbsp; <span title="Master branch build status">[![CI Status](https://travis-ci.com/w5tsu/esp32-cam-webserver.svg?branch=master)](https://travis-ci.com/github/w5tsu/esp32-cam-webserver)</span> &nbsp;&nbsp; <span title="ESP EYE">![ESP-EYE logo](Docs/logo.svg)</span>
 
 ## Taken from the ESP examples, and expanded
 This sketch is a extension of easytarget wich is an extension/expansion/rework of the 'official' ESP32 Camera example sketch from Espressif:
@@ -21,12 +21,12 @@ The goal of this project is to create a DashCam that:
 * Goes into AP mode when not connected to home network and not recording.
 * Create a Android Phone app to connect to AP and play recordered images.
 * Provide for On Screen Display (OSD) of Date and Time
-
+* Create a 3D printed Case. 
 ![Actually, there are two cats in this image!]( Docs/twocatsactually.png)
 
 ### Hardware used:
 
-[ESP32-Cam](https://www.amazon.com/ESP32-CAM-MB-Aideepen-ESP32-CAM-Bluetooth-Arduino/dp/B0BC1371J4/)These are about $8 US on Amazon.com.
+[ESP32-Cam](https://www.amazon.com/ESP32-CAM-MB-Aideepen-ESP32-CAM-Bluetooth-Arduino/dp/B0BC1371J4/) These are about $8 US on Amazon.com.
 You can purchase different ["Cameras"](https://www.amazon.com/gp/product/B0B63JQHQG/ref=ppx_yo_dt_b_asin_title_o01_s00?ie=UTF8&psc=1) for this board. 
 
 #### AI-THINKER ESP32-CAM and ther examples:
